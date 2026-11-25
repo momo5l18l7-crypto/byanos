@@ -1,1 +1,53 @@
 
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Byanos</title>
+<style>
+body{background:#090d16;color:white;font-family:Arial;padding:20px}
+.box{max-width:500px;margin:40px auto;background:#151c2b;padding:22px;border-radius:18px}
+h1{text-align:center;color:#54d6ff}
+input,button{width:100%;padding:15px;margin-top:12px;border:0;border-radius:10px;box-sizing:border-box;font-size:16px}
+input{background:#090d16;color:white;border:1px solid #39455d}
+button{background:#14b8a6;color:white;font-weight:bold}
+.result{background:#090d16;padding:14px;margin-top:10px;border-radius:10px;display:flex;justify-content:space-between;direction:ltr}
+a{color:#54d6ff}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>BYANOS</h1>
+<p style="text-align:center">TikTok Username Hunter</p>
+<input id="prefix" placeholder="بداية الاسم">
+<input id="count" type="number" value="20" min="1" max="100">
+<button onclick="generate()">ابدأ توليد الأسماء</button>
+<div id="results"></div>
+</div>
+<script>
+function generate(){
+let p=document.getElementById('prefix').value.trim().replace(/^@/,'');
+let n=Math.min(100,Math.max(1,Number(document.getElementById('count').value)||20));
+let r=document.getElementById('results');
+r.innerHTML='';
+if(!p){alert('اكتب بداية الاسم');return;}
+let suffix=['1','7','9','11','22','77','99','x','xx','_1','_7','0','00','01','10','111','777'];
+for(let i=0;i<n;i++){
+let name=p+suffix[i%suffix.length];
+let d=document.createElement('div');
+d.className='result';
+let s=document.createElement('span');
+s.textContent='@'+name;
+let a=document.createElement('a');
+a.textContent='فتح الحساب';
+a.href='https://www.tiktok.com/@'+encodeURIComponent(name);
+a.target='_blank';
+d.append(s,a);
+r.append(d);
+}
+}
+</script>
+</body>
+</html>
